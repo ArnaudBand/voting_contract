@@ -1,0 +1,23 @@
+{
+  "name": "voting_contract",
+  "version": "1.0.0",
+  "description": "In smart contract governance systems there is usually some minimum voting participation that must be reached before a proposal can be executed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnaudBand/voting_contract.git"
+  },
+  "author": "Arnaud Bandonkeye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArnaudBand/voting_contract/issues"
+  },
+  "homepage": "https://github.com/ArnaudBand/voting_contract#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.17.0"
+  }
+}
