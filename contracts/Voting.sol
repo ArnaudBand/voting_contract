@@ -14,8 +14,12 @@ contract Voting {
 
     Proposal[] public proposals;
 
+    event ProposalCreated(uint);
+    event VoteCast(uint, address);
+
     // Create a new proposal to call 'target' with 'data'
     function newProposal(address _target, bytes memory _data) external {
+        emit ProposalCreated(proposals.length);
         Proposal storage proposal = proposals.push();
         proposal.target = _target;
         proposal.data = _data;
@@ -39,5 +43,6 @@ contract Voting {
         }
 
         proposal.votes[msg.sender] = _yes ? VoteStates.Yes : VoteStates.No;
+        emit VoteCast(_proposalId, msg.sender);
     }
 }
