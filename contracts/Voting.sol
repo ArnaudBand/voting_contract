@@ -4,10 +4,13 @@ pragma solidity ^0.8.19;
 contract Voting {
 
     enum VoteStates{ Yes, No, Absent }
+    uint constant VOTE_THRESHOLD = 10;
+
     struct Proposal {
         address target;
         bytes data;
         uint yesCount;
+        bool executed;
         uint noCount;
         mapping(address => VoteStates) votes;
     }
@@ -55,5 +58,10 @@ contract Voting {
 
         proposal.votes[msg.sender] = _yes ? VoteStates.Yes : VoteStates.No;
         emit VoteCast(_proposalId, msg.sender);
+
+        if(proposal.yesCount >= VOTE_THRESHOLD && !proposal.executed) {
+            (bool success, ) = proposal.target.call(proposal.data);
+            require(success);
+        }
     }
 }
